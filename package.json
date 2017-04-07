@@ -1,17 +1,40 @@
 {
-    "buildNpmdoc":"hat",
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "buildNpmdoc": "hat",
+    "description": "api documentation for [hat (v0.0.3)](https://github.com/substack/node-hat#readme) [![npm package](https://img.shields.io/npm/v/npmdoc-hat.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-hat) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-hat.svg)](https://travis-ci.org/npmdoc/node-npmdoc-hat)",
     "devDependencies": {
-        "hat": "*",
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "hat": "*",
         "utility2": "kaizhu256/node-utility2#alpha"
     },
-    "name":"npmdoc-hat",
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-hat",
+    "keywords": [
+        "documentation",
+        "hat"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_hat.js",
+    "name": "npmdoc-hat",
+    "nameAlias": "npmdoc_hat",
+    "nameOriginal": "npmdoc-hat",
+    "os": [
+        "darwin",
+        "linux"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/npmdoc/node-npmdoc-hat"
     },
     "scripts": {
-        "build-ci": "utility2 shReadmeTest build_ci.sh"
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
     },
     "version": "0.0.1"
 }
