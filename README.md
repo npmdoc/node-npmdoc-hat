@@ -1,9 +1,14 @@
-# api documentation for  [hat (v0.0.3)](https://github.com/substack/node-hat#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-hat.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-hat) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-hat.svg)](https://travis-ci.org/npmdoc/node-npmdoc-hat)
+# npmdoc-hat
+
+#### api documentation for  [hat (v0.0.3)](https://github.com/substack/node-hat#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-hat.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-hat) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-hat.svg)](https://travis-ci.org/npmdoc/node-npmdoc-hat)
+
 #### generate random IDs and avoid collisions
 
-[![NPM](https://nodei.co/npm/hat.png?downloads=true)](https://www.npmjs.com/package/hat)
+[![NPM](https://nodei.co/npm/hat.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/hat)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-hat/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-hat_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-hat/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-hat/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-hat/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-hat/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-hat/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-hat/build/screenCapture.npmPackageListing.svg)
 
@@ -18,7 +23,6 @@
 {
     "author": {
         "name": "James Halliday",
-        "email": "mail@substack.net",
         "url": "http://substack.net"
     },
     "bugs": {
@@ -58,13 +62,11 @@
     "main": "index.js",
     "maintainers": [
         {
-            "name": "substack",
-            "email": "mail@substack.net"
+            "name": "substack"
         }
     ],
     "name": "hat",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git://github.com/substack/node-hat.git"
@@ -74,71 +76,6 @@
     },
     "version": "0.0.3"
 }
-```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module hat](#apidoc.module.hat)
-1.  [function <span class="apidocSignatureSpan">hat.</span>rack (bits, base, expandBy)](#apidoc.element.hat.rack)
-
-
-
-# <a name="apidoc.module.hat"></a>[module hat](#apidoc.module.hat)
-
-#### <a name="apidoc.element.hat.rack"></a>[function <span class="apidocSignatureSpan">hat.</span>rack (bits, base, expandBy)](#apidoc.element.hat.rack)
-- description and source-code
-```javascript
-rack = function (bits, base, expandBy) {
-    var fn = function (data) {
-        var iters = 0;
-        do {
-            if (iters ++ > 10) {
-                if (expandBy) bits += expandBy;
-                else throw new Error('too many ID collisions, use more bits')
-            }
-
-            var id = hat(bits, base);
-        } while (Object.hasOwnProperty.call(hats, id));
-
-        hats[id] = data;
-        return id;
-    };
-    var hats = fn.hats = {};
-
-    fn.get = function (id) {
-        return fn.hats[id];
-    };
-
-    fn.set = function (id, value) {
-        fn.hats[id] = value;
-        return fn;
-    };
-
-    fn.bits = bits || 128;
-    fn.base = base || 16;
-    return fn;
-}
-```
-- example usage
-```shell
-...
-''''
-
-rack
-----
-
-''''javascript
-var hat = require('hat');
-var rack = hat.rack();
-
-console.log(rack());
-console.log(rack());
-''''
-
-output:
-...
 ```
 
 
